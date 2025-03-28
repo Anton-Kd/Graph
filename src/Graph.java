@@ -27,19 +27,15 @@ public class Graph<T> {
         if (v.equals(target)) {
             return true; // нашли
         }
-        visited.add(v); // запоминаем вершину которую посетили
+        visited.add(v); // запоминаем вершину, которую посетили
 
         for (Vertex<T> currentAccount : vertices) {
             if (currentAccount.getAdjacent().contains(v) && !visited.contains(currentAccount)) {
-                return dfsFind(currentAccount, target, visited);
+                if (dfsFind(currentAccount, target, visited)) {
+                    return true;
+                }
             }
         }
-        // ВАШ КОД
-        // перебираем все смежные вершины у v
-        // если такую вершину ещё не посещали, заходим рекурсивно в неё
-        // если такой заход завершился нахождением target-а - выходим из метода с true
-
-        return false; // ничего не нашли
+        return false;
     }
-
 }
